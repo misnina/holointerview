@@ -17,7 +17,7 @@ var CHARACTERS = {
 }
 
 var current_speak_speed = 50
-var current_text_speed = 0.015
+var current_text_speed = 0.012
 
 var dialogue_test = "Hello mama mia bekka de boopa."
 
