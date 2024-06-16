@@ -15,6 +15,10 @@ run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+StatsAndFlags="*res://scripts/stats_and_flags.gd"
+
 [dotnet]
 
 project/assembly_name="HoloInterview"

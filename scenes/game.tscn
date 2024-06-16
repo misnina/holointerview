@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dk0j81cgvyyr6"]
+[gd_scene load_steps=5 format=3 uid="uid://dk0j81cgvyyr6"]
 
 [ext_resource type="PackedScene" uid="uid://dg2roe8sb3rne" path="res://scenes/conversation_controller.tscn" id="1_l7b8s"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_x4cwd"]
+[ext_resource type="Script" path="res://scripts/stats_and_flags.gd" id="2_gs12u"]
 [ext_resource type="Script" path="res://scripts/dialogue_holder.gd" id="4_73ir3"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_x4cwd")
+
+[node name="StatsAndFlags" type="Node" parent="."]
+script = ExtResource("2_gs12u")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)

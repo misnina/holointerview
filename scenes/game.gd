@@ -23,6 +23,13 @@ var CHARACTERS = {
 var current_speak_speed = 50
 var current_text_speed = 0.012
 
+#Stats
+var pleasing = 0
+var unhinged = 0
+var talented = 0
+var charming = 0
+var depressing = 0
+
 func _ready():
 	load_characters()
 	load_dialogue(dialogue_holder.INTRODUCTION)
