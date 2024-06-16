@@ -7,16 +7,16 @@ extends Node2D
 var ready_dialogue = []
 signal dialogue_skipped
 var read = true
+var skipped = false
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 
 func _input(event):
 	if (event.is_action_pressed("enter") and read):
-		await get_tree().create_timer(0.1).timeout
 		dialogue_skipped.emit()
-		await get_tree().create_timer(0.5).timeout
-		read = true
+	elif (event.is_action_pressed("enter") and not read):
+		skipped = true
 
 func read_from_queue():
 	if ready_dialogue.size() > 0:
@@ -41,7 +41,7 @@ func display_dialogue(character, dialogue, expression, text_speed, speak_speed):
 	var displayed_text = ""
 	for char in dialogue:
 		dialogue_container.text = displayed_text + char
-		if not read:
+		if not read and not skipped:
 			await get_tree().create_timer(speak_speed).timeout
 			displayed_text = displayed_text + char
 		else:
