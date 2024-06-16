@@ -4,6 +4,11 @@ extends Node2D
 @onready var character_speaking = $"Character Label/character_speaking"
 @onready var dialogue_container = $Text/dialogue
 
+const CHOICE = preload("res://scenes/choice.tscn")
+const choice_pos_x = 60
+const choice_positions = [Vector2(choice_pos_x, 8), Vector2(choice_pos_x, -12), Vector2(choice_pos_x, -32)]
+
+
 var ready_dialogue = []
 signal dialogue_skipped
 var read = true
@@ -20,7 +25,6 @@ func _input(event):
 
 func read_from_queue():
 	if ready_dialogue.size() > 0:
-		print("skilled false from dialogue")
 		read = false
 		await display_dialogue(ready_dialogue[0][0], ready_dialogue[0][1], ready_dialogue[0][2], ready_dialogue[0][3], ready_dialogue[0][4])
 		ready_dialogue[0][5] = true
@@ -36,18 +40,21 @@ func change_label(character_name):
 	character_speaking.text = "[center]%s[/center]" % character_name
 
 func display_dialogue(character, dialogue, expression, text_speed, speak_speed):
-	change_label(character.name)
-	character_controller.play_expression(character.sprite, expression, translate_time_from_dialogue(dialogue, text_speed))
-	var displayed_text = ""
-	for char in dialogue:
-		dialogue_container.text = displayed_text + char
-		if not read and not skipped:
-			await get_tree().create_timer(speak_speed).timeout
-			displayed_text = displayed_text + char
-		else:
-			read = true
-			break
-	dialogue_container.text = dialogue 
+	if "HOLO HOPEFUL" not in character.name:
+		change_label(character.name)
+		character_controller.play_expression(character.sprite, expression, translate_time_from_dialogue(dialogue, text_speed))
+		var displayed_text = ""
+		for char in dialogue:
+			dialogue_container.text = displayed_text + char
+			if not read and not skipped:
+				await get_tree().create_timer(speak_speed).timeout
+				displayed_text = displayed_text + char
+			else:
+				read = true
+				break
+		dialogue_container.text = dialogue
+	else:
+		display_choice(dialogue)
 
 func translate_time_from_dialogue(dialogue, text_speed):
 	if (dialogue.length() / text_speed) <= 0 :
@@ -61,6 +68,21 @@ func seperated_text(dialogue):
 		text_array.append(char)
 	return text_array
 
+func display_choice(choices: Array):
+	var index = 0
+	for choice in choices:
+		var newChoice = CHOICE.instantiate()
+		newChoice.position = choice_positions[index]
+		newChoice.get_child(0).text = "[center]%s[/center]" % choice
+		var button = newChoice.get_child(1)
+		button.button_down.connect(_on_choice_chosen.bind(choice, index))
+		add_child(newChoice)
+		index += 1
+	pass
+
 func _on_dialogue_skipped():
 	read_from_queue()
 	pass # Replace with function body.
+
+func _on_choice_chosen(choice, index):
+	print(choice)

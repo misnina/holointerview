@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dg2roe8sb3rne"]
+[gd_scene load_steps=7 format=3 uid="uid://dg2roe8sb3rne"]
 
 [ext_resource type="Script" path="res://scripts/conversation_controller.gd" id="1_522ho"]
 [ext_resource type="PackedScene" uid="uid://cg006q54gupbg" path="res://scenes/character_controller.tscn" id="1_wfjed"]
 [ext_resource type="FontFile" uid="uid://dx7su6ygml78c" path="res://fonts/ChevyRay - Skullboy.ttf" id="3_1amlt"]
 [ext_resource type="Texture2D" uid="uid://bs4vvl7bpd70d" path="res://sprites/text_background.png" id="4_efupq"]
 [ext_resource type="Texture2D" uid="uid://docer6x28u3yn" path="res://sprites/label_background.png" id="4_ftger"]
+[ext_resource type="Texture2D" uid="uid://b4edtkuhewe83" path="res://sprites/choice_background.png" id="6_nhqeq"]
 
 [node name="Conversation_Controller" type="Node2D"]
 script = ExtResource("1_522ho")
@@ -47,5 +48,62 @@ scroll_active = false
 text_direction = 1
 
 [node name="Choices" type="Node" parent="."]
+
+[node name="Choice 01" type="Node2D" parent="Choices"]
+
+[node name="background" type="Sprite2D" parent="Choices/Choice 01"]
+position = Vector2(73, 9)
+texture = ExtResource("6_nhqeq")
+
+[node name="text" type="RichTextLabel" parent="Choices/Choice 01"]
+offset_left = 13.0
+offset_top = 4.0
+offset_right = 133.0
+offset_bottom = 24.0
+theme_override_fonts/normal_font = ExtResource("3_1amlt")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]this is a long choice[/center]"
+scroll_active = false
+autowrap_mode = 0
+text_direction = 1
+
+[node name="Choice 02" type="Node2D" parent="Choices"]
+
+[node name="background" type="Sprite2D" parent="Choices/Choice 02"]
+position = Vector2(73, -11)
+texture = ExtResource("6_nhqeq")
+
+[node name="text" type="RichTextLabel" parent="Choices/Choice 02"]
+offset_left = 13.0
+offset_top = -15.0
+offset_right = 133.0
+offset_bottom = 5.0
+theme_override_fonts/normal_font = ExtResource("3_1amlt")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]this is a long choice[/center]"
+scroll_active = false
+autowrap_mode = 0
+text_direction = 1
+
+[node name="Choice 03" type="Node2D" parent="Choices"]
+
+[node name="background" type="Sprite2D" parent="Choices/Choice 03"]
+position = Vector2(73, -31)
+texture = ExtResource("6_nhqeq")
+
+[node name="text" type="RichTextLabel" parent="Choices/Choice 03"]
+offset_left = 13.0
+offset_top = -35.0
+offset_right = 133.0
+offset_bottom = -15.0
+theme_override_fonts/normal_font = ExtResource("3_1amlt")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]this is a long choice[/center]"
+scroll_active = false
+autowrap_mode = 0
+text_direction = 1
 
 [connection signal="dialogue_skipped" from="." to="." method="_on_dialogue_skipped"]

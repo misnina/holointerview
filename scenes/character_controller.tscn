@@ -410,12 +410,14 @@ script = ExtResource("1_1aoie")
 
 [node name="A-Chan" type="AnimatedSprite2D" parent="."]
 visible = false
+z_index = -2
 position = Vector2(-34, 0)
 sprite_frames = SubResource("SpriteFrames_yjp8o")
 animation = &"unhappy"
 
 [node name="YAGOO" type="AnimatedSprite2D" parent="."]
 visible = false
+z_index = -2
 position = Vector2(33, 0)
 sprite_frames = SubResource("SpriteFrames_xerob")
 animation = &"unhappy"

@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3n7m4wi78apm"]
+
+[ext_resource type="Script" path="res://scripts/choice.gd" id="1_kvhd4"]
+[ext_resource type="FontFile" uid="uid://dx7su6ygml78c" path="res://fonts/ChevyRay - Skullboy.ttf" id="1_n7k3c"]
+[ext_resource type="Texture2D" uid="uid://b4edtkuhewe83" path="res://sprites/choice_background.png" id="2_asg4o"]
+[ext_resource type="Texture2D" uid="uid://fwkcmerjjgt8" path="res://sprites/choice_background_clicked.png" id="4_wwsjy"]
+[ext_resource type="Texture2D" uid="uid://6qva7m6w5ilr" path="res://sprites/choice_background_hover.png" id="5_inuam"]
+
+[node name="Choice" type="Node2D"]
+position = Vector2(-3, 0)
+script = ExtResource("1_kvhd4")
+
+[node name="text" type="RichTextLabel" parent="."]
+offset_left = -57.0
+offset_top = -4.0
+offset_right = 63.0
+offset_bottom = 16.0
+theme_override_fonts/normal_font = ExtResource("1_n7k3c")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]this is a long choice[/center]"
+scroll_active = false
+autowrap_mode = 0
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+text_direction = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="button" type="TextureButton" parent="."]
+z_index = -1
+offset_left = -57.0
+offset_top = -10.0
+offset_right = 63.0
+offset_bottom = 9.0
+texture_normal = ExtResource("2_asg4o")
+texture_pressed = ExtResource("4_wwsjy")
+texture_hover = ExtResource("5_inuam")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="button" to="." method="_on_button_pressed"]

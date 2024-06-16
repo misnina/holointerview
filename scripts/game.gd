@@ -4,6 +4,10 @@ extends Node
 @onready var dialogue_holder = $dialogue_holder
 
 var CHARACTERS = {
+	"CHOICE": {
+		"name": "HOLO HOPEFUL",
+		"sprite": "a_chan",
+	},
 	"ACHAN": {
 		"name": "A-CHAN",
 		"sprite": "a_chan",
@@ -18,8 +22,6 @@ var CHARACTERS = {
 
 var current_speak_speed = 50
 var current_text_speed = 0.012
-
-var dialogue_test = "Hello mama mia bekka de boopa."
 
 func _ready():
 	load_characters()
