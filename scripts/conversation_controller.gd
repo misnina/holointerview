@@ -5,16 +5,27 @@ extends Node2D
 @onready var dialogue_container = $Text/dialogue
 
 var ready_dialogue = []
-signal dialogue_ended
+signal dialogue_skipped
+var skipped = false
+
+func _ready():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
+
+func _input(event):
+	if (event.is_action_released("enter")):
+		dialogue_skipped.emit()
 
 func read_from_queue():
-	for dialogue in ready_dialogue:
-		await display_dialogue(dialogue[0], dialogue[1], dialogue[2], dialogue[3], dialogue[4])
-	ready_dialogue.clear()
+	if ready_dialogue.size() > 0:
+		await display_dialogue(ready_dialogue[0][0], ready_dialogue[0][1], ready_dialogue[0][2], ready_dialogue[0][3], ready_dialogue[0][4])
+		ready_dialogue[0][5] = true
+		ready_dialogue = ready_dialogue.filter(func(item): return item[5] == false)
+	else:
+		print('no more dialogue')
 
 func queue_dialogue(character, dialogue, expression, text_speed, speak_speed):
 	print('dialogue queued')
-	ready_dialogue.append([character, dialogue, expression, text_speed, speak_speed])
+	ready_dialogue.append([character, dialogue, expression, text_speed, speak_speed, false])
 
 func change_label(character_name):
 	character_speaking.text = "[center]%s[/center]" % character_name
@@ -27,7 +38,6 @@ func display_dialogue(character, dialogue, expression, text_speed, speak_speed):
 		dialogue_container.text = displayed_text + char
 		await get_tree().create_timer(speak_speed).timeout
 		displayed_text = displayed_text + char
-	dialogue_ended.emit()
 
 func translate_time_from_dialogue(dialogue, text_speed):
 	if (dialogue.length() / text_speed) <= 0 :
@@ -40,6 +50,7 @@ func seperated_text(dialogue):
 	for char in dialogue:
 		text_array.append(char)
 	return text_array
-	
-func display_text_type(seperated_text, dialogue_container):
-	pass
+
+func _on_dialogue_skipped():
+	read_from_queue()
+	pass # Replace with function body.
