@@ -24,7 +24,7 @@ var current_text_speed = 0.012
 
 func _ready():
 	load_characters()
-	load_scenario(DialogueHolder.INTRODUCTION)
+	game_flow()
 
 func load_characters():
 	CHARACTERS.ACHAN.sprite = conversation_controller.character_controller.a_chan
@@ -37,5 +37,20 @@ func load_dialogue(scenario):
 func load_scenario(scenario):
 	load_dialogue(scenario)
 	
+func check_for_advance(flag, stat, stat_requirement):
+	return (StatsAndFlags.FLAGS[flag]) and (StatsAndFlags.STATS[stat] >= stat_requirement)
+	
 func _on_conversation_controller_conversation_finished():
-	load_scenario(DialogueHolder.GETING_TO_KNOW_YOU)
+	game_flow()
+	
+# Full Conversation Loop
+func game_flow():
+	if not StatsAndFlags.FLAGS.INTRODUCTION:
+		load_scenario(DialogueHolder.INTRODUCTION)
+		return
+	if not StatsAndFlags.FLAGS.GETTING_TO_KNOW_YOU:
+		load_scenario(DialogueHolder.GETTING_TO_KNOW_YOU)
+		return
+	if check_for_advance("GETTING_TO_KNOW_YOU", "pleasing", 10):
+		load_scenario(DialogueHolder.DO_YOU_WANT_TO_BE_AN_IDOL)
+		return
