@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://dg2roe8sb3rne"]
+
+[ext_resource type="Script" path="res://scripts/conversation_controller.gd" id="1_522ho"]
+[ext_resource type="PackedScene" uid="uid://cg006q54gupbg" path="res://scenes/character_controller.tscn" id="1_wfjed"]
+[ext_resource type="FontFile" uid="uid://dx7su6ygml78c" path="res://fonts/ChevyRay - Skullboy.ttf" id="3_1amlt"]
+[ext_resource type="Texture2D" uid="uid://bs4vvl7bpd70d" path="res://sprites/text_background.png" id="4_efupq"]
+[ext_resource type="Texture2D" uid="uid://docer6x28u3yn" path="res://sprites/label_background.png" id="4_ftger"]
+
+[node name="Conversation_Controller" type="Node2D"]
+script = ExtResource("1_522ho")
+
+[node name="Character_Controller" parent="." instance=ExtResource("1_wfjed")]
+
+[node name="Text" type="Node" parent="."]
+
+[node name="label_background" type="Sprite2D" parent="Text"]
+position = Vector2(0, 49)
+texture = ExtResource("4_efupq")
+
+[node name="dialogue" type="RichTextLabel" parent="Text"]
+offset_left = -127.0
+offset_top = 26.0
+offset_right = 127.0
+offset_bottom = 75.0
+theme_override_fonts/normal_font = ExtResource("3_1amlt")
+theme_override_font_sizes/normal_font_size = 16
+text = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+scroll_active = false
+text_direction = 1
+
+[node name="Character Label" type="Node" parent="."]
+
+[node name="label_background" type="Sprite2D" parent="Character Label"]
+position = Vector2(-97, 14)
+texture = ExtResource("4_ftger")
+
+[node name="character_speaking" type="RichTextLabel" parent="Character Label"]
+offset_left = -128.0
+offset_top = 10.0
+offset_right = -65.0
+offset_bottom = 30.0
+theme_override_fonts/normal_font = ExtResource("3_1amlt")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]A-CHAN[/center]"
+scroll_active = false
+text_direction = 1
+
+[node name="Choices" type="Node" parent="."]
+
+[connection signal="dialogue_skipped" from="." to="." method="_on_dialogue_skipped"]

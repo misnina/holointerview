@@ -18,3 +18,5 @@ zoom = Vector2(4, 4)
 
 [node name="dialogue_holder" type="Node" parent="."]
 script = ExtResource("4_73ir3")
+
+[connection signal="conversation_finished" from="Conversation_Controller" to="." method="_on_conversation_controller_conversation_finished"]

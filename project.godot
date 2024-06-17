@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 StatsAndFlags="*res://scripts/stats_and_flags.gd"
+DialogueHolder="*res://scripts/dialogue_holder.gd"
 
 [dotnet]
 

@@ -1,8 +1,13 @@
 extends Node
 
-#Stats
-var pleasing = 0
-var unhinged = 0
-var talented = 0
-var charming = 0
-var depressing = 0
+var stats = {
+	"pleasing": 0,
+	"unhinged": 0,
+	"talented": 0,
+	"charming": 0,
+	"depressing": 0
+}
+
+#Flags
+func check_for_flag(flag, stats):
+	pass
