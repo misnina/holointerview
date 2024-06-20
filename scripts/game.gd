@@ -38,4 +38,5 @@ func load_scenario(scenario):
 	load_dialogue(scenario)
 	
 func _on_conversation_controller_conversation_finished():
+	conversation_controller.dialogue_skipped.emit()
 	load_scenario(DialogueHolder.GETING_TO_KNOW_YOU)
