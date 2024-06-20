@@ -72,7 +72,6 @@ func seperated_text(dialogue):
 	return text_array
 
 func display_choice(choices: Array, points, scenario_name):
-	print(points)
 	var index = 0
 	var choice_nodes = []
 	for choice in choices:
@@ -89,9 +88,10 @@ func _on_dialogue_skipped():
 	read_from_queue()
 
 func _on_choice_chosen(choice, index, points, choice_nodes, scenario_name):
-	StatsAndFlags.stats[points[index][0]] += points[index][1]
-	print(str(StatsAndFlags.stats[points[index][0]]) + " %s points added" % points[index][0])
+	StatsAndFlags.STATS[points[index][0]] += points[index][1]
+	print(str(StatsAndFlags.STATS[points[index][0]]) + " %s points added" % points[index][0])
 	game.load_scenario(DialogueHolder[scenario_name + "_C%s" % index])
+	StatsAndFlags.FLAGS[scenario_name] = true
 	for choice_node in choice_nodes:
 		choice_node.queue_free()
 	conversation_finished.emit()

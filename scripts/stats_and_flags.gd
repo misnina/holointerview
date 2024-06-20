@@ -1,6 +1,6 @@
 extends Node
 
-var stats = {
+var STATS = {
 	"pleasing": 0,
 	"unhinged": 0,
 	"talented": 0,
@@ -9,5 +9,7 @@ var stats = {
 }
 
 #Flags
-func check_for_flag(flag, stats):
-	pass
+var FLAGS = {
+	"INTRODUCTION": false,
+	"GETTING_TO_KNOW_YOU": false
+}

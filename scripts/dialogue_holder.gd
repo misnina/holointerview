@@ -1,5 +1,7 @@
 extends Node
 
+
+
 # CHARACTERS.ACHAN, dialogue_test, "happy", current_speak_speed, current_text_speed
 const INTRODUCTION = {
 	"name": "INTRODUCTION",
@@ -21,8 +23,8 @@ const INTRODUCTION_C0 = {
 const INTRODUCTION_C1 = INTRODUCTION_C0
 const INTRODUCTION_C2 = INTRODUCTION_C0
 
-const GETING_TO_KNOW_YOU = {
-	"name": "GETING_TO_KNOW_YOU",
+const GETTING_TO_KNOW_YOU = {
+	"name": "GETTING_TO_KNOW_YOU",
 	"dialogue": [
 		["ACHAN", "Let's get to know you.", "happy", "none"],
 		["YAGOO", "Don't be worried, we'll be very nice.", "happy", "none"],
@@ -33,26 +35,34 @@ const GETING_TO_KNOW_YOU = {
 	]
 }
 
-const GETING_TO_KNOW_YOU_C0 = {
-	"name": "GETING_TO_KNOW_YOU_C0",
+const GETTING_TO_KNOW_YOU_C0 = {
+	"name": "GETTING_TO_KNOW_YOU_C0",
 	"dialogue": [
 		["ACHAN", "I think that's a good way to go about it.", "happy", "none"],
 		["YAGOO", "Is that it? Maybe that's a little boring.", "displeased", "none"],
 	]
 }
 
-const GETING_TO_KNOW_YOU_C1 = {
-	"name": "GETING_TO_KNOW_YOU_C1",
+const GETTING_TO_KNOW_YOU_C1 = {
+	"name": "GETTING_TO_KNOW_YOU_C1",
 	"dialogue": [
 		["ACHAN", "Are you sure that it will go away?", "unhappy", "none"],
 		["YAGOO", "Getting much done by doing nothing, things will always pass.", "happy", "none"],
 	]
 }
 
-const GETING_TO_KNOW_YOU_C2 = {
-	"name": "GETING_TO_KNOW_YOU_C2",
+const GETTING_TO_KNOW_YOU_C2 = {
+	"name": "GETTING_TO_KNOW_YOU_C2",
 	"dialogue": [
 		["YAGOO", "Sticking to your ideals is important!", "happy", "none"],
 		["ACHAN", "Would that please anyone in the end?", "displeased", "none"],
+	]
+}
+
+const DO_YOU_WANT_TO_BE_AN_IDOL = {
+	"name": "DO_YOU_WANT_TO_BE_AN_IDOL",
+	"dialogue": [
+		["YAGOO", "This is an idol company, you of course want to be an idol.", "happy", "none"],
+		["ACHAN", "It's important to know that the responsibilites and appeals of a streamer are not completly connected to being an idol. However, we require some appearances in group concerts.", "displeased", "none"],
 	]
 }
