@@ -33,8 +33,8 @@ func _process(delta):
 		has_first_pump = false
 		time = 0
 	if (Input.is_action_just_pressed("action_2") and time > pump_timing and has_first_pump):
-		progress_bar.value += base_addition / bonus_amount
-	if (time > (pump_timing + 0.1)):
+		progress_bar.value += base_addition - (base_addition / 10)
+	if (time > (pump_timing + 0.5)):
 		time = 0
 	stobe_indicator(time)
 
@@ -68,4 +68,6 @@ func stobe_indicator(time):
 			color_switch = true
 
 func _on_texture_progress_bar_value_changed(value):
+	if (value == 100):
+		print("game over!")
 	pass # Replace with function body.
